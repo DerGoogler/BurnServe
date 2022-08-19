@@ -1,0 +1,28 @@
+{
+  "name": "burnserve",
+  "main": "./dist/index.js",
+  "author": "Der_Googler <jimmyboehm@dergoogler.com>",
+  "description": "Fast, zero dependency HTTP Server for Bun.js runtime",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DerGoogler/BurnServe.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf ./dist/ && tsc"
+  },
+  "keywords": [
+    "bun",
+    "web",
+    "framework",
+    "http",
+    "backend"
+  ],
+  "dependencies": {
+    "bun-types": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
