@@ -15,7 +15,7 @@ class BurnServe {
 
   public constructor() {
     this._router = new Router();
-    this._onNotFound = (ctx) => {
+    this._onNotFound = ctx => {
       ctx.sendHTML("404 Not Found");
     };
     this._onError = (err: Error) => {
@@ -81,4 +81,4 @@ class BurnServe {
   }
 }
 
-export default BurnServe;
+export { BurnServe };
