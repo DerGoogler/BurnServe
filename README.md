@@ -1,6 +1,6 @@
 # BurnServe
 
-TODO: Add description
+This library requires [Bun](https://bun.sh)
 
 > This library is currently experimental and under development. Everything can CHANGE!
 

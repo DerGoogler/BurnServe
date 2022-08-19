@@ -3,14 +3,30 @@
   "main": "./dist/index.js",
   "author": "Der_Googler <jimmyboehm@dergoogler.com>",
   "description": "Fast, zero dependency HTTP Server for Bun.js runtime",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/DerGoogler/BurnServe.git"
   },
+  "bugs": {
+    "url": "https://github.com/DerGoogler/BurnServe/issues"
+  },
+  "homepage": "https://github.com/DerGoogler/BurnServe#README",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist/ && tsc"
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "resolutions": {
+    "**/typescript": "^4.1.3"
   },
   "keywords": [
     "bun",
@@ -23,6 +39,13 @@
     "bun-types": "^0.1.0"
   },
   "devDependencies": {
+    "postcss": "^8.4.16",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.0",
     "typescript": "^4.7.4"
-  }
+  },
+  "files": [
+    "/dist"
+  ]
 }
