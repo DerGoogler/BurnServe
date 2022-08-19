@@ -1,3 +1,5 @@
+import { file } from "bun";
+
 export default class Context {
   /**
    * The raw Request object
@@ -62,10 +64,10 @@ export default class Context {
    * @param options (optional) The Response object options
    * @returns The Context object with an empty response
    */
-  public sendEmpty = (options: ResponseInit = { headers: {} }) => {
+  public sendEmpty(options: ResponseInit = { headers: {} }): Context {
     this.res = new Response(null, options);
     return this;
-  };
+  }
 
   /**
    * Creates a response with pretty printed JSON and adds it to Context
@@ -74,14 +76,11 @@ export default class Context {
    * @param options (optional) The Response object options
    * @returns The Context object with pretty printed JSON
    */
-  public sendPrettyJson = (
-    json: { [key: string]: any },
-    options: ResponseInit = { headers: {} }
-  ) => {
+  public sendPrettyJson(json: { [key: string]: any }, options: ResponseInit = { headers: {} }): Context {
     options.headers["Content-Type"] = "application/json";
     this.res = new Response(JSON.stringify(json, null, 4), options);
     return this;
-  };
+  }
 
   /**
    * Creates a JSON response and adds it to Context
@@ -90,14 +89,11 @@ export default class Context {
    * @param options (optional) The Response object options
    * @returns The Context object with plain JSON
    */
-  public sendJson = (
-    json: { [key: string]: any },
-    options: ResponseInit = { headers: {} }
-  ) => {
+  public sendJson(json: { [key: string]: any }, options: ResponseInit = { headers: {} }): Context {
     options.headers["Content-Type"] = "application/json";
     this.res = new Response(JSON.stringify(json), options);
     return this;
-  };
+  }
 
   /**
    * Creates an HTML response with the supplied content and adds it to Context
@@ -106,11 +102,28 @@ export default class Context {
    * @param options (optional) The Response object options
    * @returns The Context object with a html response
    */
-  public sendHTML = (html: string, options: ResponseInit = { headers: {} }) => {
+  public sendHTML(html: string, options: ResponseInit = { headers: {} }): Context {
     options.headers["Content-Type"] = "text/html";
     this.res = new Response(html, options);
     return this;
-  };
+  }
+
+  /**
+   * Sends an file and adds it to Context. The headers Content-Type decribes the content type of the file
+   *
+   * @param path The path to respond with
+   * @param options (optional) The Response object options
+   * @returns The Context object with a html response
+   */
+  public sendFile(path: string, options: ResponseInit = { headers: {} }): Context {
+    this.res = new Response(
+      file(path, {
+        type: options.headers["Content-Type"],
+      }),
+      options
+    );
+    return this;
+  }
 
   /**
    * Creates a simple response with the supplied text and adds it to Context
@@ -119,10 +132,10 @@ export default class Context {
    * @param options (optional) The Response object options
    * @returns The Context object with a text response
    */
-  public sendText = (text: string, options: ResponseInit = { headers: {} }) => {
+  public sendText(text: string, options: ResponseInit = { headers: {} }): Context {
     this.res = new Response(text, options);
     return this;
-  };
+  }
 
   /**
    * Adds a supplied Response to the Context object
@@ -130,8 +143,8 @@ export default class Context {
    * @param res The Response object to be added to Context
    * @returns The Context object with the supplied Response
    */
-  public sendRaw = (res: Response) => {
+  public sendRaw(res: Response): Context {
     this.res = res;
     return this;
-  };
+  }
 }

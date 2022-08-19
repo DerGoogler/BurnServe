@@ -1,4 +1,4 @@
-import BurnServe from "../burnserve";
+import { BurnServe } from "../burnserve";
 
 namespace Router {
   export type Path = string | RegExp;
@@ -23,7 +23,7 @@ class Router {
   }
 
   public findRoute(method: string, pathname: string) {
-    return this._routes.find((route) => {
+    return this._routes.find(route => {
       if (route.path instanceof RegExp) {
         return route.method === method && route.path.test(pathname);
       } else {
