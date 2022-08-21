@@ -1,6 +1,6 @@
 {
   "name": "burnserve",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "./dist/index.js",
   "author": "Der_Googler <jimmyboehm@dergoogler.com>",
   "description": "Fast, zero dependency HTTP Server for Bun.js runtime",
